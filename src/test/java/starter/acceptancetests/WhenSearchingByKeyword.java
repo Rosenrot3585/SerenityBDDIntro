@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import starter.actions.*;
 import starter.pageobjects.*;
+import net.serenitybdd.core.Serenity;
 
 @ExtendWith(SerenityJUnit5Extension.class)
     class WhenSearchingByKeyword {
@@ -22,6 +23,6 @@ import starter.pageobjects.*;
         public void theKeywordShouldAppearInTheResultsSidebar() {
             navigate.toTheDuckDuckGoSearchPage();
             search.byKeyword("Cucumber");
-            assertThat(searchResultSidebar.heading()).isEqualTo("Cucumber");
-            }
+            Serenity.reportThat("The keyword should appear in the sidebar heading",            () -> assertThat(searchResultSidebar.heading()).isEqualTo("Cucumber"));
+        }
 }
